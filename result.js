@@ -2,7 +2,7 @@ const useState = React.useState;
 const useEffect = React.useEffect;
 
 const Result = () => {
-  const [album, setAlbum] = useState(null);
+  const [albums, setAlbums] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const url = new URL(window.location.href);
@@ -14,17 +14,16 @@ const Result = () => {
       setError("取得できませんでした");
       setIsLoading(false);
     } else {
-      fetch(
-        `https://jsonplaceholder.typicode.com/albums/${params.get("value")}`
-      )
+      fetch(`https://jsonplaceholder.typicode.com/albums`)
         .then((response) => {
           if (!response.ok) {
             throw new Error("error");
           }
+          console.log(response);
           return response.json();
         })
         .then((data) => {
-          setAlbum(data);
+          setAlbums(data);
           setIsLoading(false);
           console.log(data);
         })
@@ -36,21 +35,26 @@ const Result = () => {
   }, []);
 
   return (
-    <div>
-      {isLoading && <p>Loading...</p>}
-      {album && <Album album={album} />}
-      {error && <p>{error}</p>}
-      <a href="/index.html">戻る</a>
-    </div>
+    <>
+      <h1>検索結果</h1>
+      {albums && albums.map((album) => <Album album={album} />)}
+      <div>
+        {isLoading && <p>Loading...</p>}
+        {error && <p>{error}</p>}
+        <a href="/index.html">戻る</a>
+      </div>
+    </>
   );
 };
 
 const Album = ({ album }) => {
   return (
-    <div>
+    <div className="album">
       <img src="./img/entertainment_music.png" alt="album art" />
       <p>ID: {album.id}</p>
       <p>アルバム名: {album.title}</p>
+      <p>曲名: hogehoge</p>
+      <button>リクエストする</button>
     </div>
   );
 };
