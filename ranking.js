@@ -63,8 +63,12 @@ const Header = () => {
       </a>
       <nav>
         <ul className="nav-list">
-          <li className="nav-list-item">ホーム</li>
-          <li clasName="nav-list-item">検索</li>
+          <li className="nav-list-item">
+            <a href="/index.html">ホーム</a>
+          </li>
+          <li clasName="nav-list-item">
+            <a href="/search.html">検索</a>
+          </li>
         </ul>
       </nav>
     </header>
