@@ -36,6 +36,7 @@ const Result = () => {
 
   return (
     <>
+      <Header />
       <h1>検索結果</h1>
       {albums && albums.map((album) => <Album album={album} />)}
       <div>
@@ -56,6 +57,26 @@ const Album = ({ album }) => {
       <p>曲名: hogehoge</p>
       <button>リクエストする</button>
     </div>
+  );
+};
+
+const Header = () => {
+  return (
+    <header>
+      <a href="/index.html" className="logo">
+        Billboard Kindai
+      </a>
+      <nav>
+        <ul className="nav-list">
+          <li className="nav-list-item">
+            <a href="/index.html">ホーム</a>
+          </li>
+          <li clasName="nav-list-item">
+            <a href="/search.html">検索</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
   );
 };
 
