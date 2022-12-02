@@ -42,7 +42,7 @@ const Result = () => {
       <div>
         {isLoading && <p>Loading...</p>}
         {error && <p>{error}</p>}
-        <a href="/index.html">戻る</a>
+        <a href="/search.html">検索画面へ戻る</a>
       </div>
     </>
   );
