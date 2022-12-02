@@ -10,28 +10,23 @@ const Ranking = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    if (!params.get("value")) {
-      setError("取得できませんでした");
-      setIsLoading(false);
-    } else {
-      fetch(`https://jsonplaceholder.typicode.com/albums`)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("error");
-          }
-          console.log(response);
-          return response.json();
-        })
-        .then((data) => {
-          setAlbums(data);
-          setIsLoading(false);
-          console.log(data);
-        })
-        .catch((error) => {
-          setError("取得できませんでした");
-          setIsLoading(false);
-        });
-    }
+    fetch(`https://jsonplaceholder.typicode.com/albums`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("error");
+        }
+        console.log(response);
+        return response.json();
+      })
+      .then((data) => {
+        setAlbums(data);
+        setIsLoading(false);
+        console.log(data);
+      })
+      .catch((error) => {
+        setError("取得できませんでした");
+        setIsLoading(false);
+      });
   }, []);
 
   return (
